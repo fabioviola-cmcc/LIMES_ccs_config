@@ -155,6 +155,16 @@
     <mask>tx0.1v3</mask>
   </model_grid>
 
+  <!-- TEST WRF -->
+  <model_grid alias="wrf6v1_nemo2v1">
+    <grid name="atm">wrf6v1</grid>
+    <grid name="lnd">wrf6v1</grid>
+    <grid name="ocnice">nemo2v1</grid>
+    <support>model grids for WRF and NEMO</support>
+  </model_grid>  
+  <!-- TEST WRF END -->
+
+  
   <model_grid alias="hcru_hcru_mt13_rMERIT" not_compset="_POP" compset="DATM.+CLM.+MIZUROUTE">
     <grid name="atm">360x720cru</grid>
     <grid name="lnd">360x720cru</grid>

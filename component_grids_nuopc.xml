@@ -17,7 +17,22 @@
   <!-- ATM/LND meshes regional and global -->
   <!-- ======================================================== -->
 
-  <domain name="360x720cru">
+  <!-- TEST WRF -->    
+  <domain name="wrf6v1">
+    <nx>288</nx> <ny>402</ny>
+    <file grid="atm|lnd" mask="nemo2v1">$DIN_LOC_ROOT/domains/domain.lnd.wrf6v1_nemo2v1.210325.nc</file>
+    <file grid="ocnice" mask="nemo2v1">$DIN_LOC_ROOT/domains/domain.ocn.wrf6v1_nemo2v1.210325.nc</file>
+    <desc>WRF domain file</desc>
+  </domain>
+  
+  <domain name="nemo2v1">
+    <nx>432</nx> <ny>331</ny>
+    <file grid="ocnice" mask="wrf6v1">$DIN_LOC_ROOT/domains/domain.ocn.nemo2v1.210325.nc</file>
+    <desc>WRF and NEMO domain files</desc>
+  </domain>
+  <!-- TEST WRF END -->
+  
+    <domain name="360x720cru">
     <nx>720</nx> <ny>360</ny>
     <mesh>$DIN_LOC_ROOT/share/meshes/360x720_120830_ESMFmesh_c20210507.nc</mesh>
     <desc>Exact half-degree CRUNCEP datm forcing grid with CRUNCEP land-mask -- only valid for DATM/CLM compset</desc>
