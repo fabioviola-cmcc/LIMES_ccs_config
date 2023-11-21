@@ -2315,7 +2315,7 @@ This allows using a different mpirun command to launch unit tests
           <command name="load">intel-2021.6.0/lzo/2.10-o5rf7</command>
           <command name="load">intel-2021.6.0/boost/1.80.0-paock</command>
           <command name="load">intel-2021.6.0/mbedtls/2.28.0-g3uom</command>
-          <command name="load">intel-2021.6.0/impi-2021.6.0/xios/2.5-ltc25</command>
+          <command name="load">intel-2021.6.0/impi-2021.6.0/xios/2.5-36kwn</command>
           <command name="load">intel-2021.6.0/libarchive/3.5.2-5bbgw</command>
           <command name="load">intel-2021.6.0/impi-2021.6.0/parallelio/2.5.9-yg3hi</command>
           <command name="load">intel-2021.6.0/libuv/1.44.1-v7e5k</command>
