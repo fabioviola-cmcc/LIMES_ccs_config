@@ -61,6 +61,7 @@ This allows using a different mpirun command to launch unit tests
     <value MACH="greenplanet-sky24">gplogin\d.gp.local</value>
     <value MACH="gust">gu.*.hpc.ucar.edu</value>
     <value MACH="izumi">^i.*\.ucar\.edu</value>
+    <value MACH="juno">(login[1,2].juno.cmcc.scc)</value>    
     <value MACH="lobato">lobata</value>
     <value MACH="lonestar5">.*ls5\.tacc\.utexas\.edu</value>
     <value MACH="melvin">(melvin|watson)</value>

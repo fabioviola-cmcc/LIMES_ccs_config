@@ -1,0 +1,101 @@
+<machine MACH="juno">
+  <DESC> CMCC Lenovo ThinkSystem SD530, os is Linux, 36 pes/node, batch system is LSF</DESC>
+  <OS>LINUX</OS>
+  <COMPILERS>intel</COMPILERS>
+  <MPILIBS>impi,mpi-serial</MPILIBS>
+  <PROJECT>R000</PROJECT>
+  <CIME_OUTPUT_ROOT>/work/cmcc/$ENV{USER}/CESM2</CIME_OUTPUT_ROOT>
+  <DIN_LOC_ROOT>$ENV{CESMDATAROOT}/inputdata</DIN_LOC_ROOT>
+  <DIN_LOC_ROOT_CLMFORC>$DIN_LOC_ROOT/atm/datm7</DIN_LOC_ROOT_CLMFORC>
+  <DOUT_S_ROOT>$CIME_OUTPUT_ROOT/archive/$CASE</DOUT_S_ROOT>
+  <BASELINE_ROOT>$ENV{CESMDATAROOT}/ccsm_baselines</BASELINE_ROOT>
+  <CCSM_CPRNC>$ENV{CESMDATAROOT}/cesm2_tools/cprnc/cprnc</CCSM_CPRNC>
+  <PERL5LIB>/usr/lib64/perl5:/usr/share/perl5</PERL5LIB>
+  <GMAKE_J>8</GMAKE_J>
+  <BATCH_SYSTEM>lsf</BATCH_SYSTEM>
+  <SUPPORTED_BY>cmcc</SUPPORTED_BY>
+  <MAX_TASKS_PER_NODE>72</MAX_TASKS_PER_NODE>
+  <MAX_MPITASKS_PER_NODE>36</MAX_MPITASKS_PER_NODE>
+  <PROJECT_REQUIRED>TRUE</PROJECT_REQUIRED>
+  <mpirun mpilib="default">
+    <executable> mpirun </executable>
+  </mpirun>
+  <module_system type="module">
+    <init_path lang="perl">/usr/share/Modules/init/perl.pm</init_path>
+    <init_path lang="python">/usr/share/Modules/init/python.py</init_path>
+    <init_path lang="csh">/usr/share/Modules/init/csh</init_path>
+    <init_path lang="sh">/usr/share/Modules/init/sh</init_path>
+    <cmd_path lang="perl">/usr/bin/modulecmd perl</cmd_path>
+    <cmd_path lang="python">/usr/bin/modulecmd python </cmd_path>
+    <cmd_path lang="sh">module</cmd_path>
+    <cmd_path lang="csh">module</cmd_path>
+    <modules>
+      <command name="purge"/>
+    </modules>
+    <modules compiler="intel">
+      <command name="load">intel-2021/2021.6.0</command>
+      <command name="load">intel-2021.6.0/cmake/3.25.1-7wfsx</command>
+      <command name="load">intel-2021.6.0/libszip/2.1.1-tvhyi</command>
+      <command name="load">intel-2021.6.0/curl/7.85.0-djjip</command>
+    </modules>
+    <modules mpilib="mpi-serial">
+      <command name="load">intel-2021.6.0/hdf5/1.13.3-xwdun</command>
+      <command name="load">intel-2021.6.0/netcdf-cxx/4.2-7prit</command>
+    </modules>
+    <modules mpilib="!mpi-serial">
+      <command name="load">impi-2021.6.0/2021.6.0</command>
+      <command name="load">impi20.1/19.7.217</command>
+      <command name="load">intel-2021.6.0/impi-2021.6.0/netcdf-cxx/4.2-sex5x</command>
+      <command name="load">impi20.1/parallel-netcdf/1.12.1</command>
+    </modules>
+    <modules compiler="intel" mpilib="!mpi-serial" DEBUG="TRUE">
+      <command name="load">intel-2021.6.0/impi-2021.6.0/esmf-dbg/8.5.0-usqqz</command>
+    </modules>
+    <modules compiler="intel" mpilib="!mpi-serial" DEBUG="FALSE">
+      <command name="load">intel-2021.6.0/impi-2021.6.0/esmf/8.5.0-7dv42</command>
+    </modules>
+    <modules compiler="intel" mpilib="mpi-serial" DEBUG="TRUE">
+      <command name="load">intel-2021.6.0/esmf-dbg/8.5.0-ddyjs</command>
+    </modules>
+    <modules compiler="intel" mpilib="mpi-serial" DEBUG="FALSE">
+      <command name="load">intel-2021.6.0/esmf/8.5.0-oyamc</command>
+    </modules>
+  </module_system>
+  <environment_variables>
+    <env name="XIOS_PATH">/data/inputs/CESM/xios-cmip6</env>
+  </environment_variables>
+  <environment_variables compiler="intel">
+    <env name="I_MPI_EXTRA_FILESYSTEM">1</env>
+    <env name="I_MPI_EXTRA_FILESYSTEM_FORCE">gpfs</env>
+    <env name="GPFSMPIO_TUNEBLOCKING">0</env>
+    <env name="I_MPI_DEBUG">60</env>
+    <env name="I_MPI_PLATFORM">skx</env>
+    <env name="I_MPI_SHM">skx_avx512</env>
+    <env name="I_MPI_HYDRA_BOOTSTRAP">lsf</env>
+    <env name="I_MPI_HYDRA_COLLECTIVE_LAUNCH">1</env>
+    <env name="I_MPI_HYDRA_BRANCH_COUNT">{{ num_nodes }}</env>
+  </environment_variables>
+</machine>
+
+<!-- TO ADD -->
+<!-- anaconda/3-2022.10 -->
+<!-- intel-2021.6.0/ncl/6.6.2-p2sqo -->
+<!-- intel-2021.6.0/nco/5.0.6-jp6y4 -->
+<!-- intel-2021.6.0/ncurses/6.3-vkhgo -->
+<!-- intel-2021.6.0/ncview/2.1.8-sds5t -->
+<!-- intel-2021.6.0/netcdf-c-threadsafe/4.9.0-25h5k -->
+<!-- intel-2021.6.0/netcdf-c/4.9.0-cjqig -->
+<!-- intel-2021.6.0/netcdf-cxx-threadsafe/4.2-vew5y -->
+<!-- intel-2021.6.0/netcdf-cxx/4.2-7prit -->
+<!-- intel-2021.6.0/netcdf-fortran-threadsafe/4.6.0-2dmem -->
+<!-- intel-2021.6.0/netcdf-fortran/4.6.0-5vpiq -->
+<!-- intel-2021.6.0/cdo-threadsafe/2.1.1-lyjsw -->
+<!-- oneapi-2022.1.0/compiler-rt/2022.1.0 -->
+<!-- intel-2021.6.0/impi-2021.6.0/netcdf-c/4.9.0-qbuoy -->
+<!-- intel-2021.6.0/impi-2021.6.0/netcdf-fortran/4.6.0-gohn7 -->
+<!-- intel-2021.6.0/impi-2021.6.0/parallel-netcdf/1.12.3-eshb5 -->
+<!-- intel-2021.6.0/perl/5.36.0-jj4hw -->
+<!-- intel-2021.6.0/perl-uri/1.72-6at2i -->
+<!-- intel-2021.6.0/impi-2021.6.0/parallelio/2.5.10-5pu3o -->
+<!-- intel-2021.6.0/impi-2021.6.0/esmf/8.5.0-7dv42 -->
+<!-- intel-2021.6.0/impi-2021.6.0/xios/2.5-36kwn -->
